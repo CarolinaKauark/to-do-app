@@ -1,7 +1,17 @@
 import { Model, INTEGER, STRING, DATE, BOOLEAN } from 'sequelize';
 import db from '.';
 import User from './User';
-class Task extends Model {}
+
+class Task extends Model {
+  declare id: number;
+  declare description: string;
+  declare startTime: string;
+  declare endTime: string;
+  declare date: Date;
+  declare userId: number;
+  declare isHighPriority: boolean;
+  declare inProgress: boolean;
+}
 
 Task.init({
   id: {
@@ -24,7 +34,6 @@ Task.init({
   date: { type: DATE, allowNull: false },
   userId: {
     type: INTEGER,
-    foreignKey: true,
     field: 'user_id'
   },
   isHighPriority: { 

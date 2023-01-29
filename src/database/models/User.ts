@@ -1,7 +1,13 @@
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
 import Task from './Task'
-class User extends Model {}
+class User extends Model {
+  declare id: number;
+  declare firstName: string;
+  declare lastName: string;
+  declare email: string;
+  declare password: string;
+}
 
 User.init({
   id: {

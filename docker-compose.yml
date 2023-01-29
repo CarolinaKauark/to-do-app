@@ -33,10 +33,11 @@ services:
       - 3001:3001
     # Configura as variáveis de ambiente dentro do container
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: todo_app_db
-      MYSQL_HOST: db # Nome do service logo abaixo
+      DB_USER: root
+      DB_PASS: password
+      DB_NAME: todo_app_db
+      DB_PORT: 3306
+      DB_HOST: db # Nome do service logo abaixo
       PORT: '3001'
       HOST: todo_app
     networks:
