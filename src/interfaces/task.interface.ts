@@ -10,5 +10,6 @@ export interface ITask {
 
 export interface ITaskService {
     insertTask(body: ITask): Promise<string | void>;
-    getTasksByUserId(userId: number): Promise<ITask[] | []>
+    getTasksByUserId(userId: number): Promise<ITask[] | []>;
+    updateMatch(task: ITask, id: number): Promise<void>;
 }

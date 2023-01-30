@@ -118,4 +118,31 @@ describe('Testing the task route', () => {
       expect(chaiHttpResponse.body).to.deep.equal({message: 'Token not found'});
     });
   });
+
+  describe('Test patch "/task" route', () => {
+
+    afterEach(() => {
+      (Task.update as sinon.SinonStub).restore();
+      (jwt.verify as sinon.SinonStub).restore();
+    });
+
+    it('testa se o update na rota patch /task/1 é feito', async () => {
+      sinon
+          .stub(Task, "update")
+          .resolves([1] as any);
+      sinon.stub(jwt, 'verify').resolves(userMock);
+
+      const chaiHttpResponse = await chai
+         .request(app)
+         .patch('/task/1')
+         .set('Authorization', tokenMock)
+         .send({
+          startTime: "2015-05-29T16:00:00.000Z",
+          endTime: "2015-05-30T00:00:00.000Z",
+         })
+  
+      expect(chaiHttpResponse.status).to.equal(200);
+      expect(chaiHttpResponse.body).to.deep.equal({ message: 'Match is updated' });
+    });    
+  });
 });
