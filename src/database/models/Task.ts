@@ -54,5 +54,7 @@ Task.init({
 });
 
 Task.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+User.hasMany(Task, { foreignKey: 'userId', as: 'tasks' });
+
 
 export default Task;

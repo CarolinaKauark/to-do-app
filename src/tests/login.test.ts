@@ -13,9 +13,11 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
+const { app } = new App();
+
 
 describe('Testando a rota de login', () => {
-  describe('Testa a rota "/"', () => {
+  describe('Testa a rota "/user/login"', () => {
 
     let chaiHttpResponse: Response;
   
@@ -33,8 +35,8 @@ describe('Testando a rota de login', () => {
   
     it('testa se o login é feito com sucesso', async () => {
       const chaiHttpResponse = await chai
-         .request(App)
-         .post('/login')
+         .request(app)
+         .post('/user/login')
          .send({
           email: 'user@user.com',
           password: "secret_user",
@@ -48,8 +50,8 @@ describe('Testando a rota de login', () => {
   
     it('testa se não é permitido que o login seja feito sem o email', async () => {
       const chaiHttpResponse = await chai
-         .request(App)
-         .post('/login')
+         .request(app)
+         .post('/user/login')
          .send({
           password: "secret_user",
         })
@@ -62,8 +64,8 @@ describe('Testando a rota de login', () => {
   
     it('testa se não é permitido que o login seja feito sem o password', async () => {
       const chaiHttpResponse = await chai
-         .request(App)
-         .post('/login')
+         .request(app)
+         .post('/user/login')
          .send({
           email: 'user@user.com',
         })
@@ -76,8 +78,8 @@ describe('Testando a rota de login', () => {
   
     it('testa se o acesso não é permitido com a senha invalida', async () => {
       const chaiHttpResponse = await chai
-         .request(App)
-         .post('/login')
+         .request(app)
+         .post('/user/login')
          .send({
           email: 'user@user.com',
           password: "secret_mock",
