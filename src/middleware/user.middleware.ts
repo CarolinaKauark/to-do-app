@@ -3,7 +3,7 @@ import ErrorGenerate from '../helpers/errorGenerate';
 import { StatusCodes } from 'http-status-codes';
 
 
-const loginValidate: RequestHandler = (req, res, next) => {
+const userValidate: RequestHandler = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     throw new ErrorGenerate('All fields must be filled', StatusCodes.BAD_REQUEST);
@@ -15,4 +15,4 @@ const loginValidate: RequestHandler = (req, res, next) => {
   next();
 };
 
-export default loginValidate;
+export default userValidate;

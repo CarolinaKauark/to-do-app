@@ -99,9 +99,6 @@ describe('Testing the user route', () => {
     beforeEach(async () => {
       sinon
         .stub(User, "create")
-        .resolves(userMock.id as unknown as User);
-      sinon
-        .stub(User, "findOne")
         .resolves(userMock as unknown as User);
       sinon.stub(jwt, 'sign').resolves(tokenMock);
     });
@@ -113,18 +110,26 @@ describe('Testing the user route', () => {
     })
   
     it('test if the registration is successful', async () => {
+      sinon.stub(User, "findOne").resolves(null as unknown as User);
+
       const chaiHttpResponse = await chai
          .request(app)
          .post('/user/register')
          .send({ ...registerMock })
   
-      expect(chaiHttpResponse.status).to.equal(200);
+      expect(chaiHttpResponse.status).to.equal(201);
       expect(chaiHttpResponse.body).to.deep.equal({
         token: tokenMock,
+        id: userMock.id,
+        firstName: userMock.firstName,
+        lastName: userMock.lastName,
+        email: userMock.email,          
       });
     });
   
     it('tests if the registration is not allowed without email', async () => {
+      sinon.stub(User, "findOne").resolves(userMock as unknown as User);
+
       const chaiHttpResponse = await chai
          .request(app)
          .post('/user/register')
@@ -141,6 +146,8 @@ describe('Testing the user route', () => {
     });
   
     it('tests if the registration is not allowed without password', async () => {
+      sinon.stub(User, "findOne").resolves(userMock as unknown as User);
+
       const chaiHttpResponse = await chai
          .request(app)
          .post('/user/register')
@@ -157,6 +164,8 @@ describe('Testing the user route', () => {
     });
   
     it('tests if the registration is not allowed with an existing email address', async () => {
+      sinon.stub(User, "findOne").resolves(userMock as unknown as User);
+
       const chaiHttpResponse = await chai
          .request(app)
          .post('/user/register')

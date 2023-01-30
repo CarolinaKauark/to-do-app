@@ -8,7 +8,7 @@ const jwtConfig = {
 };
 
 export const generateToken = (user: Omit<IUser, 'password'>) => {
-  // console.log('USER', user);
+  console.log('USER', user);
 
   const token = sign(
     user,

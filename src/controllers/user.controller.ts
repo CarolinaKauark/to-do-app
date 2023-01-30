@@ -22,8 +22,8 @@ class UserController {
   register: RequestHandler = async (req, res, next) => {
     try {
       const { body } = req;
-      const token = await this.userService.register(body);
-      return res.status(StatusCodes.CREATED).json({ token });
+      const newUser = await this.userService.register(body);
+      return res.status(StatusCodes.CREATED).json(newUser);
     } catch (error) {
       next(error);
     }

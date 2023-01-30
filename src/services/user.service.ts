@@ -2,8 +2,8 @@ import { StatusCodes } from 'http-status-codes';
 import { generateToken } from '../helpers/token';
 import User from '../database/models/User';
 import ErrorGenerate from '../helpers/errorGenerate';
-import checkPassword from '../helpers/bcrypt';
-import { ILogin, IUser, IUserService } from 'src/interfaces/user.interfaces';
+import {checkPassword, crypto } from '../helpers/bcrypt';
+import { ILogin, IRegister, IUser, IUserService } from 'src/interfaces/user.interfaces';
 
 class UserService implements IUserService {
   constructor(private userModel = User) {}
@@ -20,11 +20,19 @@ class UserService implements IUserService {
     return token;
   }
 
-  async register(body: IUser): Promise<string> {
-    const user = await this.userModel.create({...body});
-    const { email, id, firstName, lastName } = user;
-    const token = generateToken({ email, id, firstName, lastName });
-    return token;
+  async register(body: IUser): Promise<IRegister> {
+    const { email, firstName, lastName, password } = body;
+
+    const user = await this.userModel.findOne({ where: { email } });
+    if(user) throw new ErrorGenerate('This user are already registered', StatusCodes.CONFLICT);
+
+    const hashPassword = crypto(password);
+
+    const newUser = await this.userModel.create({ email, firstName, lastName, password: hashPassword});
+
+    const token = await generateToken({ email, id: newUser.id, firstName, lastName });
+    
+    return { token, email, firstName, id: newUser.id, lastName };
   }
 }
 

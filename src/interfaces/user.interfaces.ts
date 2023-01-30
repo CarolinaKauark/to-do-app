@@ -9,7 +9,16 @@ export interface IUser extends ILogin {
   lastName: string;
 }
 
+export interface IRegister {
+  id?: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  token: string;
+}
+
+
 export interface IUserService {
   login(body: ILogin): Promise<string | void>;
-  register(body: IUser): Promise<string | void>;
+  register(body: IUser): Promise<IRegister | void>;
 }
