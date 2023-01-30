@@ -121,24 +121,36 @@ describe('Testing the task route', () => {
 
   describe('Test patch "/task" route', () => {
 
+    beforeEach(() => {
+      sinon.stub(jwt, 'verify').callsFake(() => {
+        return userMock;
+      });
+    })
+
     afterEach(() => {
       (Task.update as sinon.SinonStub).restore();
       (jwt.verify as sinon.SinonStub).restore();
+      (Task.findByPk as sinon.SinonStub).restore();
     });
 
     it('testa se o update na rota patch /task/1 é feito', async () => {
       sinon
-          .stub(Task, "update")
-          .resolves([1] as any);
-      sinon.stub(jwt, 'verify').resolves(userMock);
+        .stub(Task, "update")
+        .resolves([1] as any);
+      sinon
+        .stub(Task, "findByPk")
+        .resolves(tasks[0] as ITask | any);
 
       const chaiHttpResponse = await chai
          .request(app)
          .patch('/task/1')
          .set('Authorization', tokenMock)
          .send({
-          startTime: "2015-05-29T16:00:00.000Z",
-          endTime: "2015-05-30T00:00:00.000Z",
+          description: "my other new task",
+          startTime: "2015-05-28T16:00:00.000Z",
+          endTime: "2015-05-29T00:00:00.000Z",
+          isHighPriority: true,
+          inProgress: true
          })
   
       expect(chaiHttpResponse.status).to.equal(200);

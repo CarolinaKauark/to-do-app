@@ -8,8 +8,6 @@ const jwtConfig = {
 };
 
 export const generateToken = (user: Omit<IUser, 'password'>) => {
-  console.log('USER', user);
-
   const token = sign(
     user,
     process.env.JWT_SECRET || 'secret',
@@ -20,5 +18,7 @@ export const generateToken = (user: Omit<IUser, 'password'>) => {
 
 export const authenticate = (token: string): JwtPayload => {
   const decoded = verify(token, process.env.JWT_SECRET || 'secret' as Secret);
+  console.log('decodeeed', decoded);
+  
   return decoded as JwtPayload;
 };

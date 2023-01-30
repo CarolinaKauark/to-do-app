@@ -11,6 +11,8 @@ const authorizationToken: RequestHandler = (req, _res, next) => {
 
   try {
     const decoded = authenticate(authorization);
+    console.log(decoded.id);
+    
     req.headers.userId = decoded.id;
 
     next();
