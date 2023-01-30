@@ -133,7 +133,7 @@ describe('Testing the task route', () => {
       (Task.findByPk as sinon.SinonStub).restore();
     });
 
-    it('testa se o update na rota patch /task/1 é feito', async () => {
+    it('test if the update in the path patch /task/1 is done', async () => {
       sinon
         .stub(Task, "update")
         .resolves([1] as any);
@@ -155,6 +155,30 @@ describe('Testing the task route', () => {
   
       expect(chaiHttpResponse.status).to.equal(200);
       expect(chaiHttpResponse.body).to.deep.equal({ message: 'Match is updated' });
-    });    
+    });
+
+    it('tests that it is not possible to update a task that does not exist', async () => {
+      sinon
+        .stub(Task, "update")
+        .resolves([1] as any);
+      sinon
+        .stub(Task, "findByPk")
+        .resolves();
+
+      const chaiHttpResponse = await chai
+         .request(app)
+         .patch('/task/1')
+         .set('Authorization', tokenMock)
+         .send({
+          description: "my other new task",
+          startTime: "2015-05-28T16:00:00.000Z",
+          endTime: "2015-05-29T00:00:00.000Z",
+          isHighPriority: true,
+          inProgress: true
+         })
+  
+      expect(chaiHttpResponse.status).to.equal(404);
+      expect(chaiHttpResponse.body).to.deep.equal({ message: 'There is no task with such id!' });
+    });  
   });
 });
