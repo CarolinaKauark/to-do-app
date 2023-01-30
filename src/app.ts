@@ -1,5 +1,6 @@
 import express from 'express';
 import errorMiddleware from './middleware/errorMiddleware';
+import taskRouter from './routes/task.routes';
 import userRouter from './routes/user.routes';
 
 class App {
@@ -25,7 +26,9 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
 
-    this.app.use('/user', userRouter );
+    this.app.use('/user', userRouter);
+    this.app.use('/task', taskRouter);
+
 
     this.app.use(errorMiddleware);
   }

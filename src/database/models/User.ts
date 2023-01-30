@@ -18,11 +18,9 @@ User.init({
   },
   firstName: {
     type: STRING,
-    allowNull: false,
   },
   lastName: {
     type: STRING,
-    allowNull: false,
   },
   email: { type: STRING, allowNull: false },
   password: { type: STRING, allowNull: false },

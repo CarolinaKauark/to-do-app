@@ -19,6 +19,6 @@ export const generateToken = (user: Omit<IUser, 'password'>) => {
 };
 
 export const authenticate = (token: string): JwtPayload => {
-  const decoded = verify(token, process.env.JWT_SECRET as Secret);
+  const decoded = verify(token, process.env.JWT_SECRET || 'secret' as Secret);
   return decoded as JwtPayload;
 };

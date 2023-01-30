@@ -22,16 +22,15 @@ Task.init({
   },
   description: { type: STRING, allowNull: false },
   startTime: {
-    type: STRING,
+    type: DATE,
     allowNull: false,
     field: 'start_time',
   },
   endTime: {
-    type: STRING,
+    type: DATE,
     allowNull: false,
     field: 'end_time',
   },
-  date: { type: DATE, allowNull: false },
   userId: {
     type: INTEGER,
     field: 'user_id'
