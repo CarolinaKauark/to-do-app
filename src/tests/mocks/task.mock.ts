@@ -2,8 +2,9 @@ export const tasks = [
     {
       "id": 1,
       "description": "new task",
-      "startTime": "2015-05-28T16:00:00.000Z",
-      "endTime": "2015-05-29T00:00:00.000Z",
+      "startTime": "20:30:00",
+      "endTime": "21:00:00",
+      "date": "2015-05-29",
       "userId": 2,
       "isHighPriority": true,
       "inProgress": true
@@ -11,8 +12,9 @@ export const tasks = [
     {
       "id": 2,
       "description": "other task",
-      "startTime": "2019-05-28T16:00:00.000Z",
-      "endTime": "2019-05-29T00:00:00.000Z",
+      "startTime": "10:30:00",
+      "endTime": "11:00:00",
+      "date": "2018-05-29",
       "userId": 2,
       "isHighPriority": true,
       "inProgress": true

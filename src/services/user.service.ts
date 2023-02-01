@@ -38,7 +38,8 @@ class UserService implements IUserService {
   async validate(email: string, firstName: string): Promise<boolean> {
     const hasUser = await this.userModel.findOne({ where: { email, firstName } });
 
-    return !!hasUser;
+    if(!hasUser) throw new ErrorGenerate('This user does not exist', StatusCodes.NOT_FOUND);
+    return true;
   }
 }
 

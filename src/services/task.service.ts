@@ -11,7 +11,12 @@ class TaskService implements ITaskService {
     }
 
     async getTasksByUserId(userId: number): Promise<ITask[] | []> {
-        return this.taskModel.findAll({ where: { userId } });
+        return this.taskModel.findAll({ 
+            where: { userId },
+            order: [
+                ['isHighPriority', 'DESC']
+            ] 
+        });
     }
 
     async updateTask(task: ITask, id: number, userId: number): Promise<void> {

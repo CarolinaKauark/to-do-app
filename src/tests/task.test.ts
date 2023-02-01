@@ -63,8 +63,9 @@ describe('Testing the task route', () => {
          .set('Authorization', tokenMock)
          .send({
           description: "new task",
-          startTime: "2015-05-28T16:00:00.000Z",
-          endTime: "2015-05-29T00:00:00.000Z",
+          startTime: "20:30:00",
+          endTime: "21:00:00",
+          date: "2015-05-29",
           isHighPriority: true,
           inProgress: true
         })

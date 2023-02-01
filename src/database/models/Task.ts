@@ -1,3 +1,4 @@
+import { DATEONLY } from 'sequelize';
 import { Model, INTEGER, STRING, DATE, BOOLEAN } from 'sequelize';
 import db from '.';
 import User from './User';
@@ -7,7 +8,7 @@ class Task extends Model {
   declare description: string;
   declare startTime: string;
   declare endTime: string;
-  declare date: Date;
+  declare date: string;
   declare userId: number;
   declare isHighPriority: boolean;
   declare inProgress: boolean;
@@ -22,14 +23,18 @@ Task.init({
   },
   description: { type: STRING, allowNull: false },
   startTime: {
-    type: DATE,
+    type: STRING,
     allowNull: false,
     field: 'start_time',
   },
   endTime: {
-    type: DATE,
+    type: STRING,
     allowNull: false,
     field: 'end_time',
+  },
+  date: {
+    type: DATEONLY,
+    allowNull: false,
   },
   userId: {
     type: INTEGER,

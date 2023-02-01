@@ -11,11 +11,15 @@ module.exports = {
       },
       description: { type: Sequelize.STRING },
       start_time: { 
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       end_time: { 
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      date: { 
+        type: Sequelize.STRING,
         allowNull: false,
       },
       user_id: { 

@@ -3,6 +3,7 @@ export interface ITask {
     description: string;
     startTime: string;
     endTime: string;
+    date: string;
     userId: number;
     isHighPriority: boolean;
     inProgress?: boolean;
