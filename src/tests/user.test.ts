@@ -25,7 +25,9 @@ describe('Testing the user route', () => {
       sinon
         .stub(User, "findOne")
         .resolves(userMock as unknown as User);
-      sinon.stub(jwt, 'sign').resolves(tokenMock);
+        sinon.stub(jwt, 'sign').callsFake(() => {
+          return tokenMock;
+        });
     });
   
     afterEach(()=>{
@@ -44,6 +46,10 @@ describe('Testing the user route', () => {
   
       expect(chaiHttpResponse.status).to.equal(200);
       expect(chaiHttpResponse.body).to.deep.equal({
+        email: userMock.email,
+        firstName: userMock.firstName,
+        id: userMock.id,
+        lastName: userMock.lastName,
         token: tokenMock,
       });
     });

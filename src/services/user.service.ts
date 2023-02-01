@@ -8,7 +8,7 @@ import { ILogin, IRegister, IUser, IUserService } from 'src/interfaces/user.inte
 class UserService implements IUserService {
   constructor(private userModel = User) {}
 
-  async login(body: ILogin): Promise<string> {
+  async login(body: ILogin): Promise<IRegister> {
     const user = await this.userModel.findOne({ where: { email: body.email } });
 
     if (!user || !checkPassword(body.password, user.password)) {
@@ -17,7 +17,7 @@ class UserService implements IUserService {
 
     const { email, id, firstName, lastName } = user;
     const token = generateToken({ email, id, firstName, lastName });
-    return token;
+    return {token, firstName, email, lastName, id};
   }
 
   async register(body: IUser): Promise<IRegister> {
@@ -33,6 +33,12 @@ class UserService implements IUserService {
     const token = await generateToken({ email, id: newUser.id, firstName, lastName });
     
     return { token, email, firstName, id: newUser.id, lastName };
+  }
+
+  async validate(email: string, firstName: string): Promise<boolean> {
+    const hasUser = await this.userModel.findOne({ where: { email, firstName } });
+
+    return !!hasUser;
   }
 }
 

@@ -19,6 +19,7 @@ export interface IRegister {
 
 
 export interface IUserService {
-  login(body: ILogin): Promise<string | void>;
+  login(body: ILogin): Promise<IRegister | void>;
   register(body: IUser): Promise<IRegister | void>;
+  validate(email: string, firstName: string): Promise<boolean>;
 }

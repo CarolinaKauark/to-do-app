@@ -8,9 +8,6 @@ const userValidate: RequestHandler = (req, res, next) => {
   if (!email || !password) {
     throw new ErrorGenerate('All fields must be filled', StatusCodes.BAD_REQUEST);
   }
-  if (password.length <= 6) {
-    throw new ErrorGenerate('All fields must be filled', StatusCodes.BAD_REQUEST);
-  }
 
   next();
 };
