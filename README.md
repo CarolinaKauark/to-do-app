@@ -1,6 +1,6 @@
-# Project: Todo app demo
+# Project: To Do App backend
 
-Demonstration of a web app capable of managing todo lists and synchronize with Google Calendar.
+Project developed for [Remotish](https://www.remotish.agency/)'s technical test. 
 
 ## ✏ About this project
 
@@ -30,10 +30,10 @@ The app was developed using <strong>MSC architecture</strong> - Model, Service, 
 
 - Kindly check that the current working directory is the desired one before proceeding
 
- 
+``` 
  git clone git@github.com:CarolinaKauark/to-do-app_backend.git
  cd to-do-app_backend
- 
+ ```
 
  <strong>2. Choose your preferred development environment: Docker or Local</strong>
 
@@ -45,9 +45,9 @@ The app was developed using <strong>MSC architecture</strong> - Model, Service, 
 
   👉 <strong> 2.1 Run services `node` e `db` using: </strong>
 
-  
+  ``` 
   docker-compose up -d --build
-  
+  ``` 
 
 - These services will run a container named `todo_app_backend` and another called `todo_app_db`;
 
@@ -55,21 +55,24 @@ The app was developed using <strong>MSC architecture</strong> - Model, Service, 
 
   👉 <strong>2.2 Use o comando:</strong>
 
-  
+  ``` 
   docker exec -it todo_app_backend bash
-  
+  ``` 
 
 - This will allow you to access an interactive shell in the container created by the compose file
 
   👉 <strong>2.3 Install dependencies inside the container using:</strong>
 
-  
+  ``` 
   npm install
-
+  ``` 
+  
   👉 <strong>2.3 Run theses scripts to start the backend service:</strong>
+  
+  ``` 
   npm run predev
   npm run dev
-  
+  ``` 
   
 </details>
 
@@ -79,8 +82,9 @@ The app was developed using <strong>MSC architecture</strong> - Model, Service, 
 
 👉 <strong>2.1 Install dependencies: </strong>
 
-
+``` 
 npm install
+``` 
 
 </details>
 
