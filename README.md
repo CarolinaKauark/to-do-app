@@ -10,7 +10,7 @@ It offers a RESTful API to allow users to create, modify and manage todo lists a
 
 The app was developed using <strong>MSC architecture</strong> - Model, Service, Controller - implemented with <strong>Node.js</strong> and <strong>ORM Sequelize</strong> for list managing via CRUD.
 
-<strong>JWT - Jason Web Token</strong> was used to handle token authentication as well as Google's Authentication API
+<strong>JWT - Json Web Token</strong> was used to handle token authentication as well as Google's Authentication API
 
 ## 🛸 Main technologies used
 
@@ -31,8 +31,8 @@ The app was developed using <strong>MSC architecture</strong> - Model, Service, 
 - Kindly check that the current working directory is the desired one before proceeding
 
  
- git clone git@github.com:CarolinaKauark/to-do-app_frontend.git
- cd to-do-app_frontend
+ git clone git@github.com:CarolinaKauark/to-do-app_backend.git
+ cd to-do-app_backend
  
 
  <strong>2. Choose your preferred development environment: Docker or Local</strong>
