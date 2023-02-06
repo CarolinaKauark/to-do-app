@@ -33,7 +33,7 @@ Task.init({
     field: 'end_time',
   },
   date: {
-    type: DATEONLY,
+    type: STRING,
     allowNull: false,
   },
   userId: {
